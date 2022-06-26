@@ -11,4 +11,9 @@
           class="by.khaletski.practice.RockMusic">
     </bean>
 
+    <bean id="musicPlayer"
+          class="by.khaletski.practice.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
+    </bean>
+
 </beans>
