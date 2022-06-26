@@ -1,7 +1,10 @@
 package by.khaletski.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MusicPlayer {
-    private Music music;
+    private List<Music> playlist = new ArrayList<>();
     private String name;
     private int volume;
 
@@ -9,16 +12,16 @@ public class MusicPlayer {
     }
 
     // IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
+    public MusicPlayer(List<Music> playlist) {
+        this.playlist = playlist;
     }
 
-    public Music getMusic() {
-        return music;
+    public List<Music> getPlaylist() {
+        return playlist;
     }
 
-    public void setMusic(Music music) {
-        this.music = music;
+    public void setPlaylist(List<Music> playlist) {
+        this.playlist = playlist;
     }
 
     public String getName() {
@@ -38,6 +41,8 @@ public class MusicPlayer {
     }
 
     public void playMusic() {
-        System.out.println("Playing: " + music.getSong());
+        for (Music music : playlist) {
+            System.out.println("Playing: " + music.getSong());
+        }
     }
 }

@@ -9,15 +9,32 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
-    <bean id="musicBean"
+    <bean id="classicalMusicBean"
+          class="by.khaletski.practice.ClassicalMusic">
+    </bean>
+    <bean id="rockMusicBean"
           class="by.khaletski.practice.RockMusic">
+    </bean>
+    <bean id="jazzMusicBean"
+          class="by.khaletski.practice.JazzMusic">
+    </bean>
+
+    <bean id="playlistBean"
+          class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusicBean"/>
+                <ref bean="jazzMusicBean"/>
+            </list>
+        </constructor-arg>
     </bean>
 
     <bean id="musicPlayer"
           class="by.khaletski.practice.MusicPlayer">
-        <constructor-arg ref="musicBean"/>
+        <constructor-arg ref="playlistBean"/>
         <!-- Spring removes the word "set" from setter -->
-        <property name="music" ref="musicBean"/>
+        <property name="playlist" ref="playlistBean"/>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
