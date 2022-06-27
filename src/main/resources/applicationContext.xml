@@ -31,7 +31,8 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="by.khaletski.practice.MusicPlayer">
+          class="by.khaletski.practice.MusicPlayer"
+          scope="prototype">
         <constructor-arg ref="playlistBean"/>
         <!-- Spring removes the word "set" from setter -->
         <property name="playlist" ref="playlistBean"/>
