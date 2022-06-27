@@ -14,7 +14,8 @@
     <bean id="classicalMusicBean"
           class="by.khaletski.practice.ClassicalMusic"
           init-method="doMyInit"
-          destroy-method="doMyDestroy">
+          destroy-method="doMyDestroy"
+          factory-method="getClassicalMusic">
     </bean>
     <bean id="rockMusicBean"
           class="by.khaletski.practice.RockMusic">
