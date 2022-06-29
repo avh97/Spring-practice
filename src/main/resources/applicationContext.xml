@@ -7,42 +7,6 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-    <!-- For beans with scope "prototype", Spring does not call the destroy method.
-     Spring gives prototype beans to the client and doesn't care about them anymore (unlike singleton beans) -->
-    <bean id="classicalMusicBean"
-          class="by.khaletski.practice.ClassicalMusic"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy"
-          factory-method="getClassicalMusic">
-    </bean>
-    <bean id="rockMusicBean"
-          class="by.khaletski.practice.RockMusic">
-    </bean>
-    <bean id="jazzMusicBean"
-          class="by.khaletski.practice.JazzMusic">
-    </bean>
-
-    <bean id="playlistBean"
-          class="java.util.ArrayList">
-        <constructor-arg>
-            <list>
-                <ref bean="classicalMusicBean"/>
-                <ref bean="rockMusicBean"/>
-                <ref bean="jazzMusicBean"/>
-            </list>
-        </constructor-arg>
-    </bean>
-
-<!--    <bean id="musicPlayer"-->
-<!--          class="by.khaletski.practice.MusicPlayer"-->
-<!--          scope="prototype">-->
-<!--        <constructor-arg ref="playlistBean"/>-->
-<!--        &lt;!&ndash; Spring removes the word "set" from setter &ndash;&gt;-->
-<!--        <property name="playlist" ref="playlistBean"/>-->
-<!--        <property name="name" value="${musicPlayer.name}"/>-->
-<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
-<!--    </bean>-->
+    <context:component-scan base-package="by.khaletski.practice"/>
 
 </beans>
