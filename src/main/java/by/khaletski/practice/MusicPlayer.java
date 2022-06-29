@@ -1,14 +1,28 @@
 package by.khaletski.practice;
 
-public class MusicPlayer {
-    private Music music;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-    // IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
+@Component
+public class MusicPlayer {
+    // @Autowired
+    private ClassicalMusic classicalMusic;
+    private JazzMusic jazzMusic;
+    private RockMusic rockMusic;
+
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, JazzMusic jazzMusic, RockMusic rockMusic) {
+        this.classicalMusic = classicalMusic;
+        this.jazzMusic = jazzMusic;
+        this.rockMusic = rockMusic;
     }
 
-    public void playMusic() {
-        System.out.println("Playing: " + music.getSong());
+    // @Autowired
+    // public void setRockMusic(RockMusic rockMusic) {
+    //     this.rockMusic = rockMusic;
+    // }
+
+    public String playMusic() {
+        return "Playing: " + classicalMusic.getSong() + ", " + jazzMusic.getSong() + ", " + rockMusic.getSong();
     }
 }
