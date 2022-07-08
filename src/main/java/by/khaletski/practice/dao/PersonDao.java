@@ -26,4 +26,9 @@ public class PersonDao {
     public Person getPersonFromListById(int id) {
         return personList.stream().filter(persons -> persons.getId() == id).findAny().orElse(null);
     }
+
+    public void addPersonToList(Person person) {
+        person.setId(++id);
+        personList.add(person);
+    }
 }
