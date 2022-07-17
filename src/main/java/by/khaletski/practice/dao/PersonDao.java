@@ -13,10 +13,10 @@ public class PersonDao {
 
     {
         personList = new ArrayList<>();
-        personList.add(new Person(++id, "Tom"));
-        personList.add(new Person(++id, "Bob"));
-        personList.add(new Person(++id, "Mike"));
-        personList.add(new Person(++id, "Kate"));
+        personList.add(new Person(++id, "Tom", 24, "tom@mail.com"));
+        personList.add(new Person(++id, "Bob", 52, "bob@mail.com"));
+        personList.add(new Person(++id, "Mike", 18, "mike@mail.com"));
+        personList.add(new Person(++id, "Kate", 28, "kate@mail.com"));
     }
 
     public List<Person> getAllPersonsFromList() {
@@ -35,6 +35,8 @@ public class PersonDao {
     public void editPersonInList(int id, Person newPerson) {
         Person person = getPersonFromListById(id);
         person.setName(newPerson.getName());
+        person.setAge(newPerson.getAge());
+        person.setEmail(newPerson.getEmail());
     }
 
     public void removePersonFromList(int id) {
