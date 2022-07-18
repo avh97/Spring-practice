@@ -5,7 +5,10 @@ import by.khaletski.practice.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/persons")
@@ -42,7 +45,9 @@ public class PersonsController {
 
 
     @PostMapping("/persons")
-    public String createPerson(@ModelAttribute("person") Person person) {
+    public String createPerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) return "persons/newPerson";
         personDao.addPersonToList(person);
         return "redirect:/persons";
     }
@@ -53,8 +58,12 @@ public class PersonsController {
         return "persons/editPerson";
     }
 
+    // The BindingResult object should be placed right after the object with the @Valid annotation
     @PatchMapping("/{id}")
-    public String updatePerson(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+    public String updatePerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult,
+                               @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) return "persons/editPerson";
         personDao.editPersonInList(id, person);
         return "redirect:/persons";
     }
